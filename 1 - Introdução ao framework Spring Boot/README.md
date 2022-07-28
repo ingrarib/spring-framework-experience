@@ -69,6 +69,16 @@
 - Criar método que retorna a mensagem acima.
 - Executar projeto no browser.
 
+### Configurações com YAML
+- Troca no formato de configurações: formato .YML.
+
+### Configurações com variáveis de ambiente
+- Variável de ambiente pode ser injetada através da anotação @Vlue no projeto.
+- Linux e Mac: export comum de variável.
+- Windows: padrão de variável de ambiente.
+- Injeção com anotação @Value ({NOME_VARIAVEL})
+- Definição de valor default quando não há variável.
+
 
 
 ## Links pra estudo
