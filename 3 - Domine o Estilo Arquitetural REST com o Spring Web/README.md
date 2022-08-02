@@ -1,6 +1,6 @@
 # Domine o Estilo Arquitetural REST com o Spring Web
 ## Estilo Arquitetural REST
-- Um estilo arquiteural é um conceito organizacional, central de um sistema. É o padrão de arquitetura que vai escrever como nosso sistema funciona e o padrão da Engenharia de Software que define o conceito de proeto que vamos construir o sistema.
+- Um estilo arquitetural é um conceito organizacional, central de um sistema. É o padrão de arquitetura que vai escrever como nosso sistema funciona e o padrão da Engenharia de Software que define o conceito de projeto que vamos construir o sistema.
 - Trasferência de Estado Representacional (**Re**presentational **S**tate **T**ransfer.)
 	- Abstração da arquitetura web, com princípios e definições para aplicações em projetos.
 - Comunicação entre aplicações
