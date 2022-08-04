@@ -12,6 +12,7 @@ Bootcamp Spring Framework Experience
 - JDBC e JPA
 - API REST
 - Spring Security
+- CRUD
 
 ##### Demais conteúdos já foram abordados no <a href="https://github.com/ingrarib/santander-code-girls">Bootcamp Santander Code Girls</a>
 
