@@ -7,12 +7,14 @@ Bootcamp Spring Framework Experience
 #### Conteúdos abordados:   
 - Programação Orientada a Objetos (POO)
 - Apache Maven
-- Banco de Dados (MySQL)
+- Banco de Dados (MySQL e PostgreSQL)
 - Spring Boot
 - JDBC e JPA
 - API REST
 - Spring Security
+- Testes Unitários
 - CRUD
+- JWT
 
 ##### Demais conteúdos já foram abordados no <a href="https://github.com/ingrarib/santander-code-girls">Bootcamp Santander Code Girls</a>
 
