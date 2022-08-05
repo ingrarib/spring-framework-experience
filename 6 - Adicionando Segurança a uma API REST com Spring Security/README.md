@@ -116,7 +116,104 @@ Carga inicial de usuários.
 - Adicionar a dependência do banco de dados escolhido no pom.xml
 - Testar credenciais no Postman
 
+# JWT JSON Web Token
+## Definição
+O JSON Web Token - JWT é um padrão da Internet para a criação de dados com assinatura opcional e/ou criptografia, cujo conteúdo contém o JSON que afirma algum número de declarações. Os tokens são assinados usando um segredo privado ou uma chave pública/privada.  
+   
+## Estrutura do JWT
+- **Header** ou cabeçalho normalmente consiste em duas partes: o tipo de token, que é JWT e o algoritmo de assinatura que está sendo utilizado, como HMAC SHA256 ou RSA.
+```
+{
+  "alg": "HS256",
+  "typ": "JWT"
+}
+```
+- **Payload** é de fato, a estrutura do corpo contendo as informações de autenticação e autorização de um usuário.
+```
+{
+  "sub": "glysns",
+  "name": "GLEYSON SAMPAIO",
+  "roles": ["USERS","MANAGERS"]
+}
+```
+- **Signature:** para criar a parte da assinatura, você deve pegar o cabeçalho codificado, o payload codificado, a chave secreta, o algoritmo especificado no cabeçalho e assiná-lo.
+ 
+## Spring Security + JWT
+O Spring Boot utiliza a autenticação JWT para proteger uma API REST.
+  
+**Criar um projeto**
+1. No [Spring Initializr](https://start.spring.io/)
+2. Com as dependências: **Spring Web, Spring Security, Spring DATA JPA** e **H2 Database**
+3. Download, extrair e importar na IDE
+4. Confirmar no pom.xml as dependências e adicionar a dependência do JWT
+```
+<!-- JWT -->
+		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt</artifactId>
+			<version>0.7.0</version>
+		</dependency>
+```
+5. Criar a classe de modelo model.User.java
+6. Criar getters and setters para a classe
+7. Criar a classe de repositório repository.UserRepository.java
+8. Criar a classe contendo a regra de negócio service.UserService.java
+9. Criar a classe que disponibiliza um recurso HTTP para cadastrar um usuário, controller.UserController.java
+10. Configurar o JWT no projeto
+	1. **security.JWTObject**: Classe que representará um objeto para gerar o token
+	2. **security.SecurityConfig**: Classe componente que receberá as propriedades e credenciais do token via `application.properties`
+	3. **security.JWTCreator**: Classe responsável por gerar o Token com base no Objeto e vice-versa
+	4. **security.JWTFilter**: Classe que possui toda a lógica de validação quanto a integridade do token
+	5. **security.WebSecurityConfig**: Classe responsável por centralizar toda configuração de segurança da API
+11. Adicionar algumas configurações de banco de dados para visualizar o H2 Database na WEB
+```
+##H2 Database Connection Properties
+spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
+spring.datasource.driverClassName=org.h2.Driver
+spring.datasource.url=jdbc:h2:mem:testdb
+spring.datasource.username=sa
+spring.datasource.password=sa
+spring.jpa.show-sql: true
+spring.h2.console.enabled=true
+```
+12. Habilitar usuários - Para incluir um usuário vamos executar um POST: http://localhost:8080/users passando o json no body.
+	- No POSTMAN, Body, raw, text -> JSON
+```
+{"name":"INGRA", "username":"ingrarib", "password":"jwt123","roles":["USERS","MANAGERS"]}
+```
+13. Gerando o TOKEN
+	1. **dto.Login**: Classe que receberá os dados para a realização do Login na aplicação.
+	2. **dto.Sessao**: Classe que representa uma sessão do sistema contento o token gerado.
+	3. **controller.LoginController**: Esta classe terá o recurso de realizar o login e geração do token
+	4. No POSTMAN, Body, raw, text -> JSON (username + password)
+14. Visualizar o token em https://jwt.io/
+15. Testando o Token
+	1. **controller.WelcomeController**: Classes com algumas operações de nossa API
+
+### Estrutura do Projeto
+Dividimos as classes em pacotes de acordo com suas responsabilidades:  
+|  Pacote | Descrição   |
+| ------------ | ------------ |
+| model  | Camada que contém as entidades da aplicação   |
+| dto | Camada que contém os dtos da aplicação  |
+| repository  | Camada que contém os repositórios com base no Spring Data JPA  |
+| service | Camada que detém da regra de negócio e comunicação com a base de dados via repositorys   |
+| controller  | Camada que contém os recursos https expostos na API  |
+| security  | Camada responsável para toda configuração de segurança.  |
+  
+Classes Utilitárias:  
+| Classe  | Descrição  |
+| ------------ | ------------ |
+| SwaggerConfig  | Classe responsável pela documentação da API  |
+| JWTObject  | Classe que representa um Objeto correspondente a estrutura JWT  |
+| JWTCreator  | Classe responsável por gerar o Token com base no Objeto e ou instanciar o Objeto JWT com base no Token  |  
+
+
+
 ## Links Úteis
 https://glysns.gitbook.io/spring-framework/spring-security 
+
+## Agradecimentos
+[Professor Gleyson Sampaio](https://www.linkedin.com/in/glysns/)
   
 
