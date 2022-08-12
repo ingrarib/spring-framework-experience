@@ -20,4 +20,4 @@ Bootcamp Spring Framework Experience
 ##### Demais conteúdos já foram abordados no <a href="https://github.com/ingrarib/santander-code-girls">Bootcamp Santander Code Girls</a>
 
 <h2>Certificado</h2>
-<img src="CertificadoSpringBootcamp" alt="Certificado Bootcamp Spring Framework Experience">
+<img src="CertificadoSpringBootcamp.png" alt="Certificado Bootcamp Spring Framework Experience">
